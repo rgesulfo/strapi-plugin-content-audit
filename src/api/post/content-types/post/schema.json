@@ -1,0 +1,80 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Posts",
+    "name": "Posts",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Content": {
+      "type": "richtext"
+    },
+    "contact": {
+      "type": "email"
+    },
+    "Rating": {
+      "type": "integer"
+    },
+    "published": {
+      "type": "datetime"
+    },
+    "boolean": {
+      "type": "boolean"
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post.post",
+      "mappedBy": "post"
+    },
+    "post": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::post.post",
+      "inversedBy": "posts"
+    },
+    "private_field": {
+      "type": "string",
+      "required": false,
+      "private": true
+    },
+    "List": {
+      "type": "enumeration",
+      "enum": [
+        "item1",
+        "item2",
+        "item3",
+        "item4"
+      ]
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "json": {
+      "type": "json"
+    },
+    "dz": {
+      "type": "dynamiczone",
+      "components": [
+        "main.compo"
+      ]
+    }
+  }
+}

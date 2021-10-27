@@ -1,0 +1,28 @@
+{
+  "name": "content-audit",
+  "version": "0.0.0",
+  "description": "This is the description of the plugin.",
+  "strapi": {
+    "name": "content-audit",
+    "icon": "plug",
+    "description": "Description of content-audit plugin",
+    "kind": "plugin"
+  },
+  "dependencies": {
+    "@strapi/design-system": "^0.0.1-alpha.53",
+    "@strapi/icons": "^0.0.1-alpha.53"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "maintainers": [
+    {
+      "name": "A Strapi developer"
+    }
+  ],
+  "engines": {
+    "node": ">=12.x. <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
