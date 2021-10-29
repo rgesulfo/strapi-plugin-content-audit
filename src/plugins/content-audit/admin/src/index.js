@@ -81,7 +81,7 @@ export default {
         const totalFields = fields.length - 1;
         const requiredFields = fields.filter(field => field.required).length;
         const filledFields = fields.filter(field => field.value).length;
-        console.log(totalFields, requiredFields, filledFields);
+        console.log(fields);
 
         return (
           <Card>
@@ -98,6 +98,10 @@ export default {
                   <Flex justifyContent="space-between" paddingBottom={2}>
                     <Text textColor="neutral600">Total fields</Text>
                     <Text>{totalFields}</Text>
+                  </Flex>
+                  <Flex justifyContent="space-between" paddingBottom={2}>
+                    <Text textColor="neutral600">Required fields</Text>
+                    <Text>{requiredFields}</Text>
                   </Flex>
                   <Flex justifyContent="space-between" paddingBottom={2}>
                     <Text textColor="neutral600">Filled fields</Text>
