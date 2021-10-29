@@ -10,12 +10,13 @@ import {
   Card,
   CardBody,
   TableLabel,
+  H2,
   Divider,
   Text,
   Flex,
   Box,
+  Tooltip,
 } from '@strapi/design-system';
-
 
 const pluginDescription = pluginPkg.strapi.description || pluginPkg.description;
 const icon = pluginPkg.strapi.icon;
@@ -77,11 +78,10 @@ export default {
             }
           }
         }
-        
+
         const totalFields = fields.length - 1;
         const requiredFields = fields.filter(field => field.required).length;
         const filledFields = fields.filter(field => field.value).length;
-        console.log(fields);
 
         return (
           <Card>
@@ -92,21 +92,23 @@ export default {
                 </Box>
                 <Divider />
                   <Flex justifyContent="space-between" paddingTop={2} paddingBottom={2}>
-                    <Text textColor="neutral600">Completion rate</Text>
-                    <Text>{Math.round((filledFields / totalFields) * 100)} %</Text>
+                    <H2>{Math.round((filledFields / totalFields) * 100) || 0}%</H2>
+                    <Text textColor="neutral600">{totalFields} fields</Text>
                   </Flex>
-                  <Flex justifyContent="space-between" paddingBottom={2}>
-                    <Text textColor="neutral600">Total fields</Text>
-                    <Text>{totalFields}</Text>
-                  </Flex>
-                  <Flex justifyContent="space-between" paddingBottom={2}>
-                    <Text textColor="neutral600">Required fields</Text>
-                    <Text>{requiredFields}</Text>
-                  </Flex>
-                  <Flex justifyContent="space-between" paddingBottom={2}>
-                    <Text textColor="neutral600">Filled fields</Text>
-                    <Text>{filledFields}</Text>
-                  </Flex>
+                  <Box id="completion-bar" height="8px" width="100%" hasRadius background="neutral200">
+                    <Tooltip description={`${requiredFields} required fields`}>
+                      <Box id="required-bar" height="8px" width={`${(requiredFields / totalFields) * 100}%`} hasRadius background="success200" />
+                    </Tooltip>
+                    <Tooltip description={`${filledFields} filled fields`}>
+                      <Box id="filled-bar" height="8px" width={`${(filledFields / totalFields) * 100 || 0}%`} hasRadius background="success600" style={{ position: 'relative', top: '-8px'}} />
+                    </Tooltip>
+                  </Box>
+                  <Flex alignItems="center" paddingTop={2} paddingBottom={2}>
+                    <Box id ="filled-dot" height="8px" width="8px" hasRadius background="success600" marginRight={1} />
+                    <Text textColor="neutral600" small>Filled</Text>
+                    <Box id ="required-dot" height="8px" width="8px" hasRadius background="success200" marginLeft={2} marginRight={1} />
+                    <Text textColor="neutral600" small>Required</Text>
+                  </Flex>                  
               </Box>
             </CardBody>
           </Card>
