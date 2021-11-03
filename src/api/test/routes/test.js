@@ -1,0 +1,44 @@
+module.exports = {
+  routes: [
+    {
+      method: 'GET',
+      path: '/tests',
+      handler: 'test.find',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/tests/:id',
+      handler: 'test.findOne',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'POST',
+      path: '/tests',
+      handler: 'test.create',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'PUT',
+      path: '/tests/:id',
+      handler: 'test.update',
+      config: {
+        policies: [],
+      },
+    },
+    {
+      method: 'DELETE',
+      path: '/tests/:id',
+      handler: 'test.delete',
+      config: {
+        policies: [],
+      },
+    },
+  ],
+};

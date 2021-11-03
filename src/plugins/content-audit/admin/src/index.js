@@ -63,25 +63,25 @@ export default {
           initialData,
           allLayoutData: { contentType: { attributes } },
         } = useCMEditViewDataManager();
-                
+
         let fields = [];   
 
         for (let att in attributes) {
-          for (let data in initialData) {
-            if (att === data) {
-              fields = [...fields, {
-                name: att,
-                type: attributes[att].type,
-                value: initialData[data],
-                required: attributes[att].required || false,
-              }];
-            }
+          if (att !== 'id') {
+            fields = [...fields, {
+              name: att,
+              type: attributes[att].type,
+              value: initialData[att],
+              required: attributes[att].required || false,
+            }];
           }
         }
-
-        const totalFields = fields.length - 1;
+        
+        const totalFields = fields.length === 0 ? Object.keys(attributes).length - 1 : fields.length;
         const requiredFields = fields.filter(field => field.required).length;
         const filledFields = fields.filter(field => field.value).length;
+
+        const completionRate = Math.round((filledFields / totalFields) * 100) || 0;
 
         return (
           <Card>
@@ -92,7 +92,7 @@ export default {
                 </Box>
                 <Divider />
                   <Flex justifyContent="space-between" paddingTop={2} paddingBottom={2}>
-                    <H2>{Math.round((filledFields / totalFields) * 100) || 0}%</H2>
+                    <H2>{completionRate}% {completionRate === 100 ? '🎉' : ''}</H2>
                     <Text textColor="neutral600">{totalFields} fields</Text>
                   </Flex>
                   <Box id="completion-bar" height="8px" width="100%" hasRadius background="neutral200">
@@ -108,7 +108,7 @@ export default {
                     <Text textColor="neutral600" small>Filled</Text>
                     <Box id ="required-dot" height="8px" width="8px" hasRadius background="success200" marginLeft={2} marginRight={1} />
                     <Text textColor="neutral600" small>Required</Text>
-                  </Flex>                  
+                  </Flex>       
               </Box>
             </CardBody>
           </Card>

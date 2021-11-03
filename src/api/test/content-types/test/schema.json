@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tests",
+  "info": {
+    "singularName": "test",
+    "pluralName": "tests",
+    "displayName": "Test",
+    "name": "Test"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "required_field": {
+      "type": "string",
+      "required": true
+    },
+    "required_field_2": {
+      "type": "string",
+      "required": true
+    },
+    "field": {
+      "type": "string"
+    }
+  }
+}
